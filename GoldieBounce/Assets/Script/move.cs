@@ -6,7 +6,7 @@ public class move : MonoBehaviour
 {
 
     Rigidbody rb;
-    float force = -2;
+    float force = -2.5f;
     float vectorUp = 15;
     float torque = -100;
     Vector3 scale;
@@ -51,29 +51,14 @@ public class move : MonoBehaviour
         if (other.gameObject.name == "coin")
         {
             //transform.DOScale(transform.localScale * 1.5f, 0.1f).OnComplete(() => transform.DOScale(transform.localScale / 1.5f, 0.1f));
-            transform.DOScaleX(scale.x += 0.017f, 0.01f);
-            transform.DOScaleY(scale.y += 0.017f, 0.01f);
-            transform.DOScaleZ(scale.z += 0.017f, 0.01f);
-            //transform.DOScaleX(scale.x += 0.05f, 0.5f);
-            //transform.DOScaleY(scale.y += 0.05f, 0.5f);
-            //transform.DOScaleZ(scale.z += 0.05f, 0.5f);
+            transform.DOScaleX(scale.x += 6, 0.3f).OnComplete(() => transform.DOScaleX(scale.x += 0.015f, 0.017f));
+            transform.DOScaleY(scale.y += 6, 0.3f).OnComplete(() => transform.DOScaleY(scale.y += 0.015f, 0.017f));
+            transform.DOScaleZ(scale.z += 6, 0.3f).OnComplete(() => transform.DOScaleZ(scale.z += 0.015f, 0.017f));
+            transform.DOScaleX(scale.x -= 6, 0.3f);
+            transform.DOScaleY(scale.y -= 6, 0.3f);
+            transform.DOScaleZ(scale.z -= 6, 0.3f);
             other.gameObject.transform.DOScale(0, 0.1f);
             other.gameObject.name = "coin";
-
-        }
-        
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.name == "Coin")
-        {
-            Debug.Log("deneme");
-            transform.DOScaleX(scale.x += 7, 0.3f);
-            transform.DOScaleY(scale.y += 7, 0.3f);
-            transform.DOScaleZ(scale.z += 7, 0.3f);
-            transform.DOScaleX(scale.x -= 7, 0.3f);
-            transform.DOScaleY(scale.y -= 7, 0.3f);
-            transform.DOScaleZ(scale.z -= 7, 0.3f);
 
         }
     }
