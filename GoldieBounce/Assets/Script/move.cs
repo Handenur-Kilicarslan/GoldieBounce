@@ -9,6 +9,7 @@ public class move : MonoBehaviour
     float force = -2.5f;
     float vectorUp = 15;
     float torque = -100;
+    int toplam = 0;
     Vector3 scale;
 
     // Start is called before the first frame update
@@ -57,10 +58,12 @@ public class move : MonoBehaviour
             transform.DOScaleX(scale.x -= 6, 0.3f);
             transform.DOScaleY(scale.y -= 6, 0.3f);
             transform.DOScaleZ(scale.z -= 6, 0.3f);
-            other.gameObject.transform.DOScale(0, 0.1f);
+            other.gameObject.transform.DOScale(0, 0.1f).OnComplete(() => Destroy(other.transform.gameObject));
             other.gameObject.name = "coin";
+            toplam += 1;
 
         }
+        Debug.Log(toplam);
     }
 
 }
