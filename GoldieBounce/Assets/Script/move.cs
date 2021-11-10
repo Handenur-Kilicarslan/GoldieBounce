@@ -63,7 +63,19 @@ public class move : MonoBehaviour
             toplam += 1;
 
         }
-        Debug.Log(toplam);
+        //Debug.Log(toplam);
+
+        if (other.gameObject.name == "finish")
+        {
+            gameObject.transform.DOMove(new Vector3(9.9f, 120, -398.93f), 2f).OnComplete(() => gameObject.transform.DOMove(new Vector3(9.9f, 50, -398.93f), 0.9f));
+            rb.mass = 20000;
+            
+        }
+        if (other.gameObject.tag == "taht")
+        {
+            Debug.Log("deneme");
+            //other.gameObject.transform.GetChild(0).DORotate(new Vector3(0,102,0), 1.5f);
+        }
     }
 
 }
