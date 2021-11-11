@@ -6,7 +6,7 @@ public class move : MonoBehaviour
 {
 
     Rigidbody rb;
-    float force = -2.5f;
+    float force = -3.5f;
     float vectorUp = 15;
     float torque = -100;
     int toplam = 0;
@@ -75,6 +75,16 @@ public class move : MonoBehaviour
         {
             Debug.Log("deneme");
             //other.gameObject.transform.GetChild(0).DORotate(new Vector3(0,102,0), 1.5f);
+        }
+       
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Bone")
+        {
+            Debug.Log("çarptý");
+            collision.gameObject.transform.DORotate(new Vector3(90,0,-13), 1, RotateMode.Fast);
         }
     }
 
