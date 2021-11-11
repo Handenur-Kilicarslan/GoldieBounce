@@ -7,7 +7,7 @@ public class move : MonoBehaviour
 
     Rigidbody rb;
     float force = -3.5f;
-    float vectorUp = 15;
+    float vectorUp = -15;
     float torque = -100;
     int toplam = 0;
     Vector3 scale;
@@ -27,16 +27,19 @@ public class move : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             rb.mass = 1.5f;
-            
-            rb.AddForce(Vector3.forward * force, ForceMode.Impulse);
-            rb.AddForce(Vector3.up * vectorUp, ForceMode.Impulse);
+
+            rb.transform.Translate(Vector3.forward * Time.deltaTime * force);
+            rb.transform.Translate(Vector3.up * vectorUp * Time.deltaTime);
+
+            //rb.AddForce(Vector3.forward * force, ForceMode.VelocityChange);
+            //rb.AddForce(Vector3.up * vectorUp, ForceMode.VelocityChange);
             rb.AddTorque(torque, 0, 0);
             rotate();
         }
         else
         {
             force = -1;
-            vectorUp = 8;
+            vectorUp = 7;
             torque = -100;
             rb.mass = 100;
             //force = -1.5f;
@@ -84,7 +87,7 @@ public class move : MonoBehaviour
         if (collision.gameObject.name == "Bone")
         {
             Debug.Log("çarptý");
-            collision.gameObject.transform.DORotate(new Vector3(90,0,-13), 1, RotateMode.Fast);
+            collision.gameObject.transform.DORotate(new Vector3(90,-90,-13), 1, RotateMode.Fast);
         }
     }
 
