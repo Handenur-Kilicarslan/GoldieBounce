@@ -6,8 +6,8 @@ public class move : MonoBehaviour
 {
 
     Rigidbody rb;
-    float force = -3.5f;
-    float vectorUp = -15;
+    float force = 10f;
+    float vectorUp = 10;
     float torque = -100;
     int toplam = 0;
     Vector3 scale;
@@ -28,17 +28,17 @@ public class move : MonoBehaviour
         {
             rb.mass = 1.5f;
 
-            rb.transform.Translate(Vector3.forward * Time.deltaTime * force);
-            rb.transform.Translate(Vector3.up * vectorUp * Time.deltaTime);
+            //rb.transform.Translate(Vector3.forward * Time.deltaTime * force);
+            //rb.transform.Translate(Vector3.up * vectorUp * Time.deltaTime);
 
-            //rb.AddForce(Vector3.forward * force, ForceMode.VelocityChange);
-            //rb.AddForce(Vector3.up * vectorUp, ForceMode.VelocityChange);
+            rb.AddForce(Vector3.forward * force, ForceMode.VelocityChange);
+            rb.AddForce(Vector3.up * vectorUp, ForceMode.VelocityChange);
             rb.AddTorque(torque, 0, 0);
             rotate();
         }
         else
         {
-            force = -1;
+            force = 2;
             vectorUp = 7;
             torque = -100;
             rb.mass = 100;
@@ -48,7 +48,7 @@ public class move : MonoBehaviour
     }
     void rotate()
     {
-        transform.DORotate(new Vector3(transform.rotation.x - 360, transform.rotation.y, transform.rotation.z), 1f, RotateMode.LocalAxisAdd);
+        transform.DORotate(new Vector3(transform.rotation.x + 360, transform.rotation.y, transform.rotation.z), 1f, RotateMode.LocalAxisAdd);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -70,25 +70,28 @@ public class move : MonoBehaviour
 
         if (other.gameObject.name == "finish")
         {
-            gameObject.transform.DOMove(new Vector3(9.9f, 120, -398.93f), 2f).OnComplete(() => gameObject.transform.DOMove(new Vector3(9.9f, 50, -398.93f), 0.9f));
+            gameObject.transform.DOMove(new Vector3(9.94f, 124, -43), 2f).OnComplete(() => gameObject.transform.DOMove(new Vector3(9.94f, 55, -43f), 0.9f));
             rb.mass = 20000;
             
         }
-        if (other.gameObject.tag == "taht")
+       
+       
+
+    }
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "taht")
         {
             Debug.Log("deneme");
             //other.gameObject.transform.GetChild(0).DORotate(new Vector3(0,102,0), 1.5f);
         }
-       
-
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name == "Bone")
+        if (collision.gameObject.name == "Armature")
         {
             Debug.Log("çarptý");
             collision.gameObject.transform.DORotate(new Vector3(90,-90,-13), 1, RotateMode.Fast);
         }
     }
+    */
 
 }
