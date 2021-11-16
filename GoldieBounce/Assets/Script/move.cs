@@ -4,17 +4,19 @@ using UnityEngine;
 using DG.Tweening;
 public class move : MonoBehaviour
 {
-
+    GameManager gm;
     Rigidbody rb;
     float force = 10f;
     float vectorUp = 10;
     float torque = -100;
     int toplam = 0;
+    int hesap = 0;
     Vector3 scale;
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         scale = transform.localScale;
         rb = GetComponent<Rigidbody>();
     }
@@ -41,7 +43,7 @@ public class move : MonoBehaviour
             force = 2;
             vectorUp = 7;
             torque = -100;
-            rb.mass = 100;
+            rb.mass = 200;
             //force = -1.5f;
         }
         
@@ -66,32 +68,59 @@ public class move : MonoBehaviour
             toplam += 1;
 
         }
-        //Debug.Log(toplam);
+       
 
         if (other.gameObject.name == "finish")
         {
-            gameObject.transform.DOMove(new Vector3(9.94f, 124, -43), 2f).OnComplete(() => gameObject.transform.DOMove(new Vector3(9.94f, 55, -43f), 0.9f));
-            rb.mass = 20000;
-            
+            StartCoroutine(bekleiki());
+            //gameObject.transform.DOMove(new Vector3(9.94f, 124, -43), 2f).OnComplete(() => gameObject.transform.DOMove(new Vector3(9.94f, 55, -43f), 0.9f));
+            //rb.mass = 20000;
+            StartCoroutine(bekle());
         }
        
        
 
     }
-    /*
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "taht")
         {
             Debug.Log("deneme");
-            //other.gameObject.transform.GetChild(0).DORotate(new Vector3(0,102,0), 1.5f);
         }
         if (collision.gameObject.name == "Armature")
         {
-            Debug.Log("çarptý");
-            collision.gameObject.transform.DORotate(new Vector3(90,-90,-13), 1, RotateMode.Fast);
         }
     }
-    */
+    IEnumerator bekle()
+    {
+        //kodlar
+        if (toplam < 100)
+        {
+            hesap = toplam / 4;
+            for (int i = 1; i <= hesap; i++)
+            {
 
+                gm.dizi[i - 1].GetComponent<x_move>().enabled = true;
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        else
+        {
+            hesap = 25;
+            for (int i = 1; i <= hesap; i++)
+            {
+
+                gm.dizi[i - 1].GetComponent<x_move>().enabled = true;
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+    }
+    IEnumerator bekleiki()
+    {
+        //kodlar
+        gameObject.transform.DOMove(new Vector3(9.94f, 124, -43), 2f).OnComplete(() => gameObject.transform.DOMove(new Vector3(9.94f, 55, -43f), 0.9f));
+        rb.mass = 20000;
+        yield return new WaitForSeconds(2f);
+    }
 }

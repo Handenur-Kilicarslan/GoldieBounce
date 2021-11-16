@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject followCam;
     public GameObject Player;
+    public GameObject[] dizi;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,4 +18,5 @@ public class GameManager : MonoBehaviour
     {
         //followCam.GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow = Player.transform;
     }
+
 }
