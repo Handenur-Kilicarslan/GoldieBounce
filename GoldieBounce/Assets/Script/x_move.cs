@@ -42,7 +42,7 @@ public class x_move : MonoBehaviour
    
     private void domove()
     {
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 6), 0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 6), 0.2f);
 
     }
 
