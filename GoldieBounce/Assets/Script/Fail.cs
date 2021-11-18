@@ -20,9 +20,20 @@ public class Fail : MonoBehaviour
     {
         if (other.transform.gameObject.name == "Player")
         {
-            gameObject.transform.DOScale(0, 0.2f).OnComplete(() => Destroy(transform.gameObject));            
-            other.gameObject.transform.DOScale(0, 0.2f).OnComplete(() => Destroy(other.transform.gameObject));
-            //game over
+            gameObject.transform.DOScale(0, 0.2f);
+            move.rb.isKinematic = true;
+            other.gameObject.transform.DOScale(0, 0.2f);
+            FindObjectOfType<GameManager>().GameOver();
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.gameObject.name == "Player")
+        {
+
+            move.rb.isKinematic = true;
+            collision.gameObject.transform.DOScale(0, 0.2f);
+            FindObjectOfType<GameManager>().GameOver();
         }
     }
 }
