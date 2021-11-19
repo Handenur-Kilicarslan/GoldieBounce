@@ -5,24 +5,46 @@ using UnityEngine;
 public class karakterAnim : MonoBehaviour
 {
     Animator animator;
-    int durmaHash;
+    int taklaHash;
+    int sevinHash;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        durmaHash = Animator.StringToHash("durma");
+        taklaHash = Animator.StringToHash("takla");
+        sevinHash = Animator.StringToHash("sevin");
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        bool durma = animator.GetBool(durmaHash);
-        if (move.kontrol == true)
+        bool bosta = animator.GetBool(taklaHash);
+        bool sevin = animator.GetBool(sevinHash);
+        
+        if (move.taklakontrol == true)
         {
             Debug.Log("animasyonda");
-            animator.SetBool("durma", false);
+            
+            animator.SetBool("takla", true);
         }
+        if (move.taklakontrol == false)
+        {
+            Debug.Log("animasyonda deðil");
+            animator.SetBool("takla", false);
+        } 
+        
+        if (move.sevinkontrol == true)
+        {
+            Debug.Log("animasyonda 2");
+            animator.SetBool("sevin", true);
+        }
+        if (move.sevinkontrol == false)
+        {
+            Debug.Log("animasyonda deðil2");
+            animator.SetBool("sevin", false);
+        }
+
     }
     public static void takla()
     {

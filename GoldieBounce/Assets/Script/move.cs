@@ -13,8 +13,8 @@ public class move : MonoBehaviour
     float torque = 10;
     int toplam = 0;
     static int hesap = 0;
-    public static bool kontrol;
-
+    public static bool taklakontrol = false;
+    public static bool sevinkontrol = false;
     public static bool lastMove = false;
 
     Vector3 scale;
@@ -87,12 +87,13 @@ public class move : MonoBehaviour
             lastMove = true;
             anim.enabled = true;
             StartCoroutine(bekle());
-            kontrol = true;
-            karakterAnim.takla();
+            taklakontrol = true;
             for (int i = 1; i <= hesap; i++)
             {
-                karakter.transform.DOMove(new Vector3(9.8f, 61 + (i * 8.8f), 23.8f), (i*0.3f));
+                karakter.transform.DOMove(new Vector3(9.8f, 61 + (i * 8.8f), 27), (i*0.3f));
+                sevinkontrol = true;
             }
+            StartCoroutine(beklewin());
         }
     }
     
@@ -133,9 +134,16 @@ public class move : MonoBehaviour
     IEnumerator bekleiki()
     {
         //kodlar
-        gameObject.transform.DOMove(new Vector3(9.94f, 124, 0.64f), 2f);
+        gameObject.transform.DOMove(new Vector3(9.94f, 124, -13f), 2f);
         rb.mass = 20000;
         yield return new WaitForSeconds(2f);
-        gameObject.transform.DOMove(new Vector3(9.94f, 55, 0.64f), 0.9f);
+        gameObject.transform.DOMove(new Vector3(9.94f, 55, -13f), 1f);
+    }
+    IEnumerator beklewin()
+    {
+        //kodlar
+        Debug.Log("bekliyor");
+        yield return new WaitForSeconds(7f);
+        FindObjectOfType<GameManager>().Win();
     }
 }
