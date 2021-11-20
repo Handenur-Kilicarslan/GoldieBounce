@@ -10,6 +10,7 @@ public class karakterAnim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         animator = GetComponent<Animator>();
         taklaHash = Animator.StringToHash("takla");
         sevinHash = Animator.StringToHash("sevin");
@@ -25,7 +26,6 @@ public class karakterAnim : MonoBehaviour
         if (move.taklakontrol == true)
         {
             Debug.Log("animasyonda");
-            
             animator.SetBool("takla", true);
         }
         if (move.taklakontrol == false)

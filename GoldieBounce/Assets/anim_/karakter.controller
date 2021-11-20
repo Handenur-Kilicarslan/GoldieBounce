@@ -78,6 +78,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: takla
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: bekle
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 9117405650737448997}
   m_Solo: 0
@@ -161,6 +164,12 @@ AnimatorController:
     m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: sevin
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 1
+    m_Controller: {fileID: 0}
+  - m_Name: bekle
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0

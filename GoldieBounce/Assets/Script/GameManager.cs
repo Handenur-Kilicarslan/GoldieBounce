@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject failUI;
     public GameObject winUI;
 
+    public GameObject[] konfeti;
+    public GameObject camkonfeti;
     public GameObject followCam;
     public GameObject Player;
     public GameObject[] dizi;
@@ -46,7 +48,10 @@ public class GameManager : MonoBehaviour
         //Debug.Log("handeyi seviyorum <3");
         Player.GetComponent<move>().enabled = true;
         tapPlayUI.SetActive(false);
-
+        for (int i = 0; i <25; i++) {
+            konfeti[i].SetActive(false);
+        }
+        camkonfeti.SetActive(false);
         Time.timeScale = 1;
     }
     public void restart() //Fail UI butonu
@@ -100,6 +105,7 @@ public class GameManager : MonoBehaviour
     {
         Player.GetComponent<move>().enabled = false;
         winUI.SetActive(true);
+        camkonfeti.SetActive(true);
     }
 
 

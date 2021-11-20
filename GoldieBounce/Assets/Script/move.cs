@@ -79,7 +79,7 @@ public class move : MonoBehaviour
         if (other.gameObject.name == "finish") //finish çizgisini geçme
         {
             StartCoroutine(bekleiki());
-            
+            transform.DORotate(new Vector3(0, -180, 0), 0.1f, RotateMode.LocalAxisAdd);
 
         }
         if (other.gameObject.tag == "cube") //karakteri yukarý fýrlatma
@@ -87,6 +87,7 @@ public class move : MonoBehaviour
             lastMove = true;
             anim.enabled = true;
             StartCoroutine(bekle());
+            StartCoroutine(beklekonfeti());
             taklakontrol = true;
             for (int i = 1; i <= hesap; i++)
             {
@@ -115,7 +116,9 @@ public class move : MonoBehaviour
             hesap = toplam / 4;
             for (int i = 1; i <= hesap; i++)
             {
-
+               
+                gm.konfeti[i].SetActive(true);
+                
                 gm.dizi[i - 1].GetComponent<x_move>().enabled = true;
                 yield return new WaitForSeconds(0.2f);
             }
@@ -125,9 +128,32 @@ public class move : MonoBehaviour
             hesap = 25;
             for (int i = 1; i <= hesap; i++)
             {
-
+                gm.konfeti[i].SetActive(true);
                 gm.dizi[i - 1].GetComponent<x_move>().enabled = true;
                 yield return new WaitForSeconds(0.2f);
+            }
+        }
+    }
+    IEnumerator beklekonfeti()
+    {
+        //kodlar
+        if (toplam < 100)
+        {
+            hesap = toplam / 4;
+            for (int i = 1; i <= hesap; i++)
+            {
+
+                gm.konfeti[i].SetActive(true);
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        else
+        {
+            hesap = 25;
+            for (int i = 1; i <= hesap; i++)
+            {
+                gm.konfeti[i].SetActive(true);
+                yield return new WaitForSeconds(0.5f);
             }
         }
     }
