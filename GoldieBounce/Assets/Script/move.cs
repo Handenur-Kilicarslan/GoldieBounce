@@ -62,19 +62,19 @@ public class move : MonoBehaviour
     {
         if (other.gameObject.name == "coin")
         {
-            //transform.DOScale(transform.localScale * 1.5f, 0.1f).OnComplete(() => transform.DOScale(transform.localScale / 1.5f, 0.1f));
+            StartCoroutine(light());
             transform.DOScaleX(scale.x += 6, 0.3f).OnComplete(() => transform.DOScaleX(scale.x += 0.015f, 0.017f));
             transform.DOScaleY(scale.y += 6, 0.3f).OnComplete(() => transform.DOScaleY(scale.y += 0.015f, 0.017f));
             transform.DOScaleZ(scale.z += 6, 0.3f).OnComplete(() => transform.DOScaleZ(scale.z += 0.015f, 0.017f));
             transform.DOScaleX(scale.x -= 6, 0.3f);
             transform.DOScaleY(scale.y -= 6, 0.3f);
             transform.DOScaleZ(scale.z -= 6, 0.3f);
+            
             other.gameObject.transform.DOScale(0, 0.1f).OnComplete(() => Destroy(other.transform.gameObject));
             other.gameObject.name = "coin";
             toplam += 1;
 
         }
-       
 
         if (other.gameObject.name == "finish") //finish çizgisini geçme
         {
@@ -171,5 +171,15 @@ public class move : MonoBehaviour
         Debug.Log("bekliyor");
         yield return new WaitForSeconds(7f);
         FindObjectOfType<GameManager>().Win();
+    }
+    IEnumerator light()
+    {
+        Debug.Log("light");
+        gm.light.SetActive(true);
+        yield return new WaitForSeconds(0.8f);
+
+        gm.light.SetActive(false);
+
+
     }
 }

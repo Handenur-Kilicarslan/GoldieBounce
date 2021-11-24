@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     public GameObject failUI;
     public GameObject winUI;
 
+
     public GameObject[] konfeti;
     public GameObject camkonfeti;
     public GameObject followCam;
     public GameObject Player;
     public GameObject[] dizi;
+    public GameObject light;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
     /*
     void PauseGame()
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
             konfeti[i].SetActive(false);
         }
         camkonfeti.SetActive(false);
+        light.SetActive(false);
         Time.timeScale = 1;
     }
     public void restart() //Fail UI butonu
