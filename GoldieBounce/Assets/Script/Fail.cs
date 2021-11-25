@@ -20,6 +20,7 @@ public class Fail : MonoBehaviour
     {
         if (other.transform.gameObject.name == "Player")
         {
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
             gameObject.transform.DOScale(0, 0.2f);
             move.rb.isKinematic = true;
             other.gameObject.transform.DOScale(0, 0.2f);

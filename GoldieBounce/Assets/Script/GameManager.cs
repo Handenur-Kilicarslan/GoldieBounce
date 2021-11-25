@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     public GameObject[] dizi;
     public GameObject light;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,7 +98,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
     public void GameOver()  //UI AÇILIÞI
-    {
+    { 
         Time.timeScale = 1;
         Player.GetComponent<move>().enabled = false;
         failUI.SetActive(true);
