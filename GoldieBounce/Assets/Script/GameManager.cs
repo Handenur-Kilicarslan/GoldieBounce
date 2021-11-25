@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         winUI.SetActive(false);
         Player.GetComponent<move>().enabled = false;
         tapPlayUI.SetActive(true);
-        move.lastMove = false;
+        collision.lastMove = false;
         Time.timeScale = 1;
         ResetGame(); //ÞÝMDÝLÝK
 

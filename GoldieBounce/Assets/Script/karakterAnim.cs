@@ -23,23 +23,23 @@ public class karakterAnim : MonoBehaviour
         bool bosta = animator.GetBool(taklaHash);
         bool sevin = animator.GetBool(sevinHash);
         
-        if (move.taklakontrol == true)
+        if (collision.taklakontrol == true)
         {
             Debug.Log("animasyonda");
             animator.SetBool("takla", true);
         }
-        if (move.taklakontrol == false)
+        if (collision.taklakontrol == false)
         {
             Debug.Log("animasyonda deðil");
             animator.SetBool("takla", false);
         } 
         
-        if (move.sevinkontrol == true)
+        if (collision.sevinkontrol == true)
         {
             Debug.Log("animasyonda 2");
             animator.SetBool("sevin", true);
         }
-        if (move.sevinkontrol == false)
+        if (collision.sevinkontrol == false)
         {
             Debug.Log("animasyonda deðil2");
             animator.SetBool("sevin", false);

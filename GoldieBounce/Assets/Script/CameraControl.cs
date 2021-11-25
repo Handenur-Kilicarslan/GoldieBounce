@@ -15,13 +15,13 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (move.lastMove == true)
+        if (collision.lastMove == true)
         {
             Debug.Log("ikinci kamera");
 
             animator.Play("cam02");
         }
-        if (move.lastMove == false)
+        if (collision.lastMove == false)
         {
             Debug.Log("ilk kamera");
             animator.Play("cam01");

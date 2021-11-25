@@ -23,7 +23,7 @@ public class Fail : MonoBehaviour
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
             gameObject.transform.DOScale(0, 0.2f);
             move.rb.isKinematic = true;
-            other.gameObject.transform.DOScale(0, 0.2f);
+            other.gameObject.transform.parent.DOScale(0, 0.2f);
             FindObjectOfType<GameManager>().GameOver();
         }
     }
@@ -33,7 +33,7 @@ public class Fail : MonoBehaviour
         {
 
             move.rb.isKinematic = true;
-            collision.gameObject.transform.DOScale(0, 0.2f);
+            collision.gameObject.transform.parent.DOScale(0, 0.2f);
             FindObjectOfType<GameManager>().GameOver();
         }
     }
