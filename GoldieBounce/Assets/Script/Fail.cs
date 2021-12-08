@@ -22,9 +22,10 @@ public class Fail : MonoBehaviour
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
             gameObject.transform.DOScale(0, 0.2f);
-            move.rb.isKinematic = true;
-            other.gameObject.transform.parent.DOScale(0, 0.2f);
-            FindObjectOfType<GameManager>().GameOver();
+            //move.rb.isKinematic = true;
+            Debug.Log("bomba");
+            //other.gameObject.transform.parent.DOScale(0, 0.2f);
+            //FindObjectOfType<GameManager>().GameOver();
         }
     }
     private void OnCollisionEnter(Collision collision)
