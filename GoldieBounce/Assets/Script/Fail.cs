@@ -5,10 +5,12 @@ using DG.Tweening;
 
 public class Fail : MonoBehaviour
 {
+    GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -21,6 +23,7 @@ public class Fail : MonoBehaviour
         if (other.transform.gameObject.name == "Player")
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            StartCoroutine(bomb());
             gameObject.transform.DOScale(0, 0.2f);
             //move.rb.isKinematic = true;
             Debug.Log("bomba");
@@ -37,5 +40,15 @@ public class Fail : MonoBehaviour
             collision.gameObject.transform.parent.DOScale(0, 0.2f);
             FindObjectOfType<GameManager>().GameOver();
         }
+    }
+    IEnumerator bomb()
+    {
+        Debug.Log("light");
+        gm.bomb.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+
+        gm.bomb.SetActive(false);
+
+
     }
 }
