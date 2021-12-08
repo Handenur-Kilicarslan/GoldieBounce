@@ -15,25 +15,52 @@ public class collision : MonoBehaviour
     public static bool taklakontrol = false;
     public static bool sevinkontrol = false;
     public static bool lastMove = false;
-
     public Text goldText;
 
+    ///////////////7
+    public static Rigidbody rb;
+    public static float force = 17f;
+    public static float vectorUp = 17f;
+    float torque = 10f;
+    ///////////////77
     void Start()
     {
         scale = transform.localScale;
         anim = GameObject.Find("tahterevalli").GetComponent<Animator>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        rb = GetComponent<Rigidbody>();//////////
     }
 
     // Update is called once per frame
     void Update()
     {
         goldText.text = "" + toplam;
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             rotate();
         }
+        */
+        /////////////////7
+        rb.isKinematic = false;
+        if (Input.GetMouseButtonDown(0))
+        {
+            rb.mass = 1.5f;
+            rb.velocity = Vector3.forward * force;
+            rb.AddForce(Vector3.up * vectorUp, ForceMode.VelocityChange);
+            rb.AddTorque(torque, 0, 0);
+            rotate();
+        }
+        else
+        {
 
+            force = 13;
+            vectorUp = 8;
+            torque = 10;
+            rb.mass = 1000;
+            //force = -1.5f;
+        }
+        //////////////777
 
     }
     void rotate()
@@ -52,7 +79,7 @@ public class collision : MonoBehaviour
             transform.DOScaleZ(scale.z += 6, 0.3f).OnComplete(() => transform.DOScaleZ(scale.z += 0.015f, 0.017f));
             transform.DOScaleX(scale.x -= 6, 0.3f);
             transform.DOScaleY(scale.y -= 6, 0.3f);
-            transform.DOScaleZ(scale.z -= 6, 0.3f);
+            transform.DOScaleZ(scale.z -= 6, 0.3f).OnComplete(() => Debug.Log("büyümesi lazým artýk"));
 
             other.gameObject.transform.DOScale(0, 0.1f).OnComplete(() => Destroy(other.transform.gameObject));
             other.gameObject.name = "coin";

@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] konfeti;
     public GameObject camkonfeti;
     public GameObject followCam;
+    public GameObject number;
     public GameObject Player;
-    public GameObject Playerchild;
     public GameObject[] dizi;
     public GameObject light;
     public GameObject bomb;
@@ -24,9 +24,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Player.GetComponent<move>().enabled = false;
-        Playerchild.GetComponent<collision>().enabled = false;
+        number.GetComponent<move>().enabled = false;
+        Player.GetComponent<collision>().enabled = false;
         move.rb.isKinematic = true;
+        collision.rb.isKinematic = true;
         tapPlayUI.SetActive(true);
     }
 
@@ -54,9 +55,10 @@ public class GameManager : MonoBehaviour
     public void tapstart()  //Start UI butonu
     {
         //Debug.Log("handeyi seviyorum <3");
-        Player.GetComponent<move>().enabled = true;
-        Playerchild.GetComponent<collision>().enabled = true;
-        move.rb.isKinematic = false;
+        number.GetComponent<move>().enabled = true;
+        Player.GetComponent<collision>().enabled = true;
+        move.rb.isKinematic = false; 
+        collision.rb.isKinematic = false;
         tapPlayUI.SetActive(false);
         for (int i = 0; i <25; i++) {
             konfeti[i].SetActive(false);
@@ -69,8 +71,8 @@ public class GameManager : MonoBehaviour
     public void restart() //Fail UI butonu
     {
         Debug.Log("restart");
-        Player.GetComponent<move>().enabled = false;
-        Playerchild.GetComponent<collision>().enabled = false;
+        number.GetComponent<move>().enabled = false;
+        Player.GetComponent<collision>().enabled = false;
         tapPlayUI.SetActive(true);
         Time.timeScale = 1;
         ResetGame();
@@ -82,8 +84,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("next");
         winUI.SetActive(false);
-        Player.GetComponent<move>().enabled = false; 
-        Playerchild.GetComponent<collision>().enabled = false;
+        number.GetComponent<move>().enabled = false; 
+        Player.GetComponent<collision>().enabled = false;
         tapPlayUI.SetActive(true);
         collision.lastMove = false;
         Time.timeScale = 1;
@@ -103,8 +105,8 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("handeyi seviyorum <3333");
 
-        Player.GetComponent<move>().enabled = false; 
-        Playerchild.GetComponent<collision>().enabled = false;
+        number.GetComponent<move>().enabled = false; 
+        Player.GetComponent<collision>().enabled = false;
         tapPlayUI.SetActive(true);
         //PlayUI.SetActive(true);
         Time.timeScale = 1;
@@ -112,15 +114,15 @@ public class GameManager : MonoBehaviour
     public void GameOver()  //UI AÇILIÞI
     { 
         Time.timeScale = 1;
-        Player.GetComponent<move>().enabled = false;
-        Playerchild.GetComponent<collision>().enabled = false;
+        number.GetComponent<move>().enabled = false;
+        Player.GetComponent<collision>().enabled = false;
         failUI.SetActive(true);
     }
 
     public void Win() //UI AÇILIÞI
     {
-        Player.GetComponent<move>().enabled = false;
-        Playerchild.GetComponent<collision>().enabled = false;
+        number.GetComponent<move>().enabled = false;
+        Player.GetComponent<collision>().enabled = false;
         winUI.SetActive(true);
         camkonfeti.SetActive(true);
     }
